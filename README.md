@@ -166,3 +166,8 @@ Tests are located in `src/tests/` and use Closure's testing framework.
 - Use `index-dev.html` instead of `index.html`
 - Ensure `closure-library` is properly installed
 - Check browser console for dependency loading errors
+
+**Screen shot:**
+
+<img width="491" height="258" alt="image" src="https://github.com/user-attachments/assets/f3c50d1a-6a4b-4164-85bf-c80071e21498" />
+
