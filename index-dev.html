@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8" />
+  <title>Closure Enterprise Console (Development)</title>
+  <link rel="stylesheet" href="dist/styles.css" />
+  <script>
+    // Enable debug loader for development
+    window.CLOSURE_NO_DEPS = true; // We load deps files manually below to control order
+    window.CLOSURE_UNCOMPILED_DEFINES = { 'goog.ENABLE_DEBUG_LOADER': true };
+    window.goog = window.goog || {};
+    window.goog.ENABLE_DEBUG_LOADER = true;
+  </script>
+</head>
+
+<body>
+  <div id="app-root"></div>
+
+  <!-- 1. Load Closure Library Base -->
+  <script src="closure-library/closure/goog/base.js"></script>
+
+  <!-- 2. Load Closure Library Dependencies (Core modules like goog.dom) -->
+  <script src="closure-library/closure/goog/deps.js"></script>
+
+  <!-- 3. Load Project Dependencies (Our app files) -->
+  <script src="deps.js"></script>
+
+  <!-- 4. Bootstrap Application -->
+  <script>
+    console.log('DevLoader: Require app.main');
+    goog.require('app.main');
+
+    // Poll for entry point availability
+    var attempts = 0;
+    var maxAttempts = 50;
+    var checkInterval = setInterval(function () {
+      attempts++;
+      if (typeof app !== 'undefined' && app.main) {
+        console.log('DevLoader: app.main found!');
+        clearInterval(checkInterval);
+        try {
+          app.main();
+        } catch (e) { 
+          console.error(e); 
+        }
+      } else if (attempts >= maxAttempts) {
+        console.error('DevLoader: Timeout waiting for app.main');
+        clearInterval(checkInterval);
+      }
+    }, 100);
+  </script>
+</body>
+
+</html>

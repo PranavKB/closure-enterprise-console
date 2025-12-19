@@ -1,0 +1,16 @@
+{
+  "name": "closure-enterprise-console",
+  "version": "1.0.0",
+  "description": "Enterprise console built with Google Closure Compiler",
+  "scripts": {
+    "build": "cmd /c build.bat",
+    "serve": "npx http-server -p 8080 -c-1"
+  },
+  "devDependencies": {
+    "google-closure-compiler": "^20251215.0.0",
+    "google-closure-deps": "^20230802.0.0"
+  },
+  "dependencies": {
+    "google-closure-library": "^20230802.0.0"
+  }
+}
